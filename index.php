@@ -1,11 +1,19 @@
-<!-- API Call -->
+
 <?php
+
+require __DIR__ . '/vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+$api_key = $_ENV['OMDB_API_KEY'];
+
+// API Call to OMDB API
+
         // create a new cURL resource
         $curl = curl_init();
 
         // set URL
         curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://www.omdbapi.com/?apikey=63737720&s=title',
+        CURLOPT_URL => 'https://www.omdbapi.com/?apikey=' . $api_key . '&s=title',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
